@@ -1,14 +1,17 @@
 const User = require("../models/userModel");
 const bcrypt = require("bcrypt");
 
-async function createUser(useremail, password) {
+const createUser = async ({ useremail, password }) => {
   const hashedPassword = await bcrypt.hash(password, 10);
   const user = new User({ useremail, password: hashedPassword });
-  return user.save();
-}
+  return await user.save();
+};
 
-async function findUserByUseremail(useremail) {
-  return User.findOne({ useremail });
-}
+const findUserByUseremail = async (useremail) => {
+  return await User.findOne({ useremail });
+};
 
-module.exports = { createUser, findUserByUseremail };
+module.exports = {
+  createUser,
+  findUserByUseremail,
+};
