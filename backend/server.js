@@ -6,7 +6,7 @@ require("dotenv").config();
 const app = express();
 const PORT = process.env.PORT || 8000;
 
-// const productRoutes = require("./routes/productRoutes");
+const bookReviewRoutes = require("./routes/bookReviewRoutes");
 const userRoutes = require("./routes/userRoutes");
 
 // Connect to MongoDB
@@ -24,8 +24,8 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // Routes
-// app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/reviews", bookReviewRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server running on http://localhost:${PORT}`);
