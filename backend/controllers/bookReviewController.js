@@ -4,7 +4,6 @@ const createReview = async (req, res) => {
   try {
     const { Title, Author, Rating, Comment } = req.body;
 
-    // validation
     if (!Title || !Author || !Rating || !Comment) {
       return res.status(400).json({ message: "All fields are required." });
     }
@@ -58,6 +57,10 @@ const updateReviewById = async (req, res) => {
   try {
     const { id } = req.params;
     const { Title, Author, Rating, Comment } = req.body;
+
+    if (!Title || !Author || !Rating || !Comment) {
+      return res.status(400).json({ message: "All fields are required." });
+    }
 
     const review = await reviewDbService.updateReviewById(id, {
       Title,
